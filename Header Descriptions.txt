@@ -1,0 +1,74 @@
+There are 13 Headers. Primary description source 
+for these is wikipedia's "List of HTTP header fields"
+page with an additional URL to backup the information
+on that page.
+
+This page is here: https://en.wikipedia.org/wiki/List_of_HTTP_header_fields , confirming references are listed with each heading.
+Alt-Svc -> quic=".443", ma=2592000; v="35.34"
+	A header that allows an http server to nominate
+	an alternate service for responding to a request.
+	An alternate service could be a different protocol
+	or a different server or port.
+	Ma is the max age in seconds. I don't have a reference
+	for what quic or v means, I assume that quic refers to
+	a common port.
+	v could mean value or version, I'm not going to guess.
+	https://tools.ietf.org/html/rfc7838
+Cache-Control -> private, max-age=0, must-revalidate, no-transform
+	private means this is intended for a single user and isn't
+	supposed to be stored in a shared cache. A private cache can store it.
+	Used to specify directives for caching in requests and responses.
+	Only valid in one direction.
+	Max age specifies the amount of time the header is valid, relative to the time
+	of the request. Units is seconds.
+	must-revalidate means that the cache must verify stale resources and should not
+	use expired resources.
+	no-transform means that no transformations or conversions should be made to the
+	resource.
+	https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control
+Content-Length -> 34139
+	Size of the entity-body in "a decimal number of octets". In other words
+	this is the number of bytes in a body.
+	https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Length
+Date -> Sun, 22 Jan 2017 19:20:57 GMT
+	This is the time of the message origin.
+	https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Date
+ETag -> "vFp1TYDMppbWxVi0Wgw_upD83cI/a00HhsZQaiXhNpG3-ioLiltLcRg"
+	Entity Tag. This is so that a server can check and make sure that
+	the message is the same entity that it sent. In some circumstances
+	multiple versions of a message can get sent, checking this tag allows
+	a server to correctly compose the proper message in an efficient manner.
+	https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag
+Expires -> Sun, 22 Jan 2017 19:20:57 GMT
+	This is the date when the message is considered junk data. Note that dates in
+	the past like say, 0 mean that a message is already stale.
+	https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Expires
+Server -> GSE
+	Information about the server software used by the origin server
+	to handle the request.
+	https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Server
+Vary -> Origin
+Vary -> X-Origin
+	The vary response header determines how to 
+	match future request headers to decide
+	whether or not the server should used a cached 
+	request. Not sure what Origin and X-Origin refer to.
+	https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Vary
+X-Content-Type-Options -> nosniff
+	Says "do not check the MIME type". Browsers check the MIME Type to
+	determine what kind of file is being sent. Setting this to nosniff
+	makes it so that the browser doesn't do this, which saves time and
+	prevents the browser from possibly misinterpreting what a message is.
+	https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options
+X-Frame-Options -> SAMEORIGIN
+	Specifies where a site can render frame, iframe and object elements.
+	By specifying SAMEORIGIN this makes it so a site can only render
+	those elements if they exist in the same site that is serving the page.
+	A security method to prevent clickjacking.
+	https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
+X-XSS-Protection -> 1; mode=block
+	Used to check to see if a site contains inline, unsafe javascript.
+	The first value makes the browser enable or disable protection.
+	One means it is enabled. The mode argument tells the browser how to
+	handle the xss attack. In this case the web browser will simply
+	not render a page with a detected xss attack.
